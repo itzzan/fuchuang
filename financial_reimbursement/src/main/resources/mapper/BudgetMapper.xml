@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zan.mapper.BudgetMapper">
+  <resultMap id="BaseResultMap" type="com.zan.pojo.Budget">
+    <id column="budget_id" jdbcType="INTEGER" property="budgetId" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="equipment_cost" jdbcType="DECIMAL" property="equipmentCost" />
+    <result column="operation_cost" jdbcType="DECIMAL" property="operationCost" />
+    <result column="outsourcing_cost" jdbcType="DECIMAL" property="outsourcingCost" />
+    <result column="indirect_cost" jdbcType="DECIMAL" property="indirectCost" />
+    <result column="travel_conference_international_cost" jdbcType="DECIMAL" property="travelConferenceInternationalCost" />
+    <result column="publication_literature_information_intellectual_cost" jdbcType="DECIMAL" property="publicationLiteratureInformationIntellectualCost" />
+    <result column="competition_cost" jdbcType="DECIMAL" property="competitionCost" />
+    <result column="student_grants" jdbcType="DECIMAL" property="studentGrants" />
+    <result column="expert_consultation_cost" jdbcType="DECIMAL" property="expertConsultationCost" />
+    <result column="outsourcing_commission_cost" jdbcType="DECIMAL" property="outsourcingCommissionCost" />
+    <result column="other_cost" jdbcType="DECIMAL" property="otherCost" />
+    <result column="traffic_cost" jdbcType="DECIMAL" property="trafficCost" />
+    <result column="management_cost" jdbcType="DECIMAL" property="managementCost" />
+    <result column="office_cost" jdbcType="DECIMAL" property="officeCost" />
+    <result column="hotel_cost" jdbcType="DECIMAL" property="hotelCost" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    budget_id, project_id, equipment_cost, operation_cost, outsourcing_cost, indirect_cost, 
+    travel_conference_international_cost, publication_literature_information_intellectual_cost, 
+    competition_cost, student_grants, expert_consultation_cost, outsourcing_commission_cost, 
+    other_cost, traffic_cost, management_cost, office_cost, hotel_cost
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from budget
+    where budget_id = #{budgetId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from budget
+    where budget_id = #{budgetId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zan.pojo.Budget">
+    insert into budget (budget_id, project_id, equipment_cost, 
+      operation_cost, outsourcing_cost, indirect_cost, 
+      travel_conference_international_cost, publication_literature_information_intellectual_cost, 
+      competition_cost, student_grants, expert_consultation_cost, 
+      outsourcing_commission_cost, other_cost, traffic_cost, 
+      management_cost, office_cost, hotel_cost
+      )
+    values (#{budgetId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, #{equipmentCost,jdbcType=DECIMAL}, 
+      #{operationCost,jdbcType=DECIMAL}, #{outsourcingCost,jdbcType=DECIMAL}, #{indirectCost,jdbcType=DECIMAL}, 
+      #{travelConferenceInternationalCost,jdbcType=DECIMAL}, #{publicationLiteratureInformationIntellectualCost,jdbcType=DECIMAL}, 
+      #{competitionCost,jdbcType=DECIMAL}, #{studentGrants,jdbcType=DECIMAL}, #{expertConsultationCost,jdbcType=DECIMAL}, 
+      #{outsourcingCommissionCost,jdbcType=DECIMAL}, #{otherCost,jdbcType=DECIMAL}, #{trafficCost,jdbcType=DECIMAL}, 
+      #{managementCost,jdbcType=DECIMAL}, #{officeCost,jdbcType=DECIMAL}, #{hotelCost,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zan.pojo.Budget">
+    insert into budget
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="budgetId != null">
+        budget_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="equipmentCost != null">
+        equipment_cost,
+      </if>
+      <if test="operationCost != null">
+        operation_cost,
+      </if>
+      <if test="outsourcingCost != null">
+        outsourcing_cost,
+      </if>
+      <if test="indirectCost != null">
+        indirect_cost,
+      </if>
+      <if test="travelConferenceInternationalCost != null">
+        travel_conference_international_cost,
+      </if>
+      <if test="publicationLiteratureInformationIntellectualCost != null">
+        publication_literature_information_intellectual_cost,
+      </if>
+      <if test="competitionCost != null">
+        competition_cost,
+      </if>
+      <if test="studentGrants != null">
+        student_grants,
+      </if>
+      <if test="expertConsultationCost != null">
+        expert_consultation_cost,
+      </if>
+      <if test="outsourcingCommissionCost != null">
+        outsourcing_commission_cost,
+      </if>
+      <if test="otherCost != null">
+        other_cost,
+      </if>
+      <if test="trafficCost != null">
+        traffic_cost,
+      </if>
+      <if test="managementCost != null">
+        management_cost,
+      </if>
+      <if test="officeCost != null">
+        office_cost,
+      </if>
+      <if test="hotelCost != null">
+        hotel_cost,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="budgetId != null">
+        #{budgetId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentCost != null">
+        #{equipmentCost,jdbcType=DECIMAL},
+      </if>
+      <if test="operationCost != null">
+        #{operationCost,jdbcType=DECIMAL},
+      </if>
+      <if test="outsourcingCost != null">
+        #{outsourcingCost,jdbcType=DECIMAL},
+      </if>
+      <if test="indirectCost != null">
+        #{indirectCost,jdbcType=DECIMAL},
+      </if>
+      <if test="travelConferenceInternationalCost != null">
+        #{travelConferenceInternationalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="publicationLiteratureInformationIntellectualCost != null">
+        #{publicationLiteratureInformationIntellectualCost,jdbcType=DECIMAL},
+      </if>
+      <if test="competitionCost != null">
+        #{competitionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="studentGrants != null">
+        #{studentGrants,jdbcType=DECIMAL},
+      </if>
+      <if test="expertConsultationCost != null">
+        #{expertConsultationCost,jdbcType=DECIMAL},
+      </if>
+      <if test="outsourcingCommissionCost != null">
+        #{outsourcingCommissionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="otherCost != null">
+        #{otherCost,jdbcType=DECIMAL},
+      </if>
+      <if test="trafficCost != null">
+        #{trafficCost,jdbcType=DECIMAL},
+      </if>
+      <if test="managementCost != null">
+        #{managementCost,jdbcType=DECIMAL},
+      </if>
+      <if test="officeCost != null">
+        #{officeCost,jdbcType=DECIMAL},
+      </if>
+      <if test="hotelCost != null">
+        #{hotelCost,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zan.pojo.Budget">
+    update budget
+    <set>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentCost != null">
+        equipment_cost = #{equipmentCost,jdbcType=DECIMAL},
+      </if>
+      <if test="operationCost != null">
+        operation_cost = #{operationCost,jdbcType=DECIMAL},
+      </if>
+      <if test="outsourcingCost != null">
+        outsourcing_cost = #{outsourcingCost,jdbcType=DECIMAL},
+      </if>
+      <if test="indirectCost != null">
+        indirect_cost = #{indirectCost,jdbcType=DECIMAL},
+      </if>
+      <if test="travelConferenceInternationalCost != null">
+        travel_conference_international_cost = #{travelConferenceInternationalCost,jdbcType=DECIMAL},
+      </if>
+      <if test="publicationLiteratureInformationIntellectualCost != null">
+        publication_literature_information_intellectual_cost = #{publicationLiteratureInformationIntellectualCost,jdbcType=DECIMAL},
+      </if>
+      <if test="competitionCost != null">
+        competition_cost = #{competitionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="studentGrants != null">
+        student_grants = #{studentGrants,jdbcType=DECIMAL},
+      </if>
+      <if test="expertConsultationCost != null">
+        expert_consultation_cost = #{expertConsultationCost,jdbcType=DECIMAL},
+      </if>
+      <if test="outsourcingCommissionCost != null">
+        outsourcing_commission_cost = #{outsourcingCommissionCost,jdbcType=DECIMAL},
+      </if>
+      <if test="otherCost != null">
+        other_cost = #{otherCost,jdbcType=DECIMAL},
+      </if>
+      <if test="trafficCost != null">
+        traffic_cost = #{trafficCost,jdbcType=DECIMAL},
+      </if>
+      <if test="managementCost != null">
+        management_cost = #{managementCost,jdbcType=DECIMAL},
+      </if>
+      <if test="officeCost != null">
+        office_cost = #{officeCost,jdbcType=DECIMAL},
+      </if>
+      <if test="hotelCost != null">
+        hotel_cost = #{hotelCost,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where budget_id = #{budgetId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zan.pojo.Budget">
+    update budget
+    set project_id = #{projectId,jdbcType=INTEGER},
+      equipment_cost = #{equipmentCost,jdbcType=DECIMAL},
+      operation_cost = #{operationCost,jdbcType=DECIMAL},
+      outsourcing_cost = #{outsourcingCost,jdbcType=DECIMAL},
+      indirect_cost = #{indirectCost,jdbcType=DECIMAL},
+      travel_conference_international_cost = #{travelConferenceInternationalCost,jdbcType=DECIMAL},
+      publication_literature_information_intellectual_cost = #{publicationLiteratureInformationIntellectualCost,jdbcType=DECIMAL},
+      competition_cost = #{competitionCost,jdbcType=DECIMAL},
+      student_grants = #{studentGrants,jdbcType=DECIMAL},
+      expert_consultation_cost = #{expertConsultationCost,jdbcType=DECIMAL},
+      outsourcing_commission_cost = #{outsourcingCommissionCost,jdbcType=DECIMAL},
+      other_cost = #{otherCost,jdbcType=DECIMAL},
+      traffic_cost = #{trafficCost,jdbcType=DECIMAL},
+      management_cost = #{managementCost,jdbcType=DECIMAL},
+      office_cost = #{officeCost,jdbcType=DECIMAL},
+      hotel_cost = #{hotelCost,jdbcType=DECIMAL}
+    where budget_id = #{budgetId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByProjectId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from budget
+    where project_id = #{projectId,jdbcType=INTEGER}
+  </select>
+</mapper>

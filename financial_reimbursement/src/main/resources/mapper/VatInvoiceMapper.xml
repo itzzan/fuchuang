@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zan.mapper.VatInvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.zan.pojo.VatInvoice">
+    <id column="invoice_id" jdbcType="INTEGER" property="invoiceId" />
+    <result column="reimbursement_id" jdbcType="INTEGER" property="reimbursementId" />
+    <result column="reimbursement_category" jdbcType="VARCHAR" property="reimbursementCategory" />
+    <result column="reimbursement_content" jdbcType="VARCHAR" property="reimbursementContent" />
+    <result column="invoice_name" jdbcType="VARCHAR" property="invoiceName" />
+    <result column="invoice_code" jdbcType="VARCHAR" property="invoiceCode" />
+    <result column="invoice_price" jdbcType="DECIMAL" property="invoicePrice" />
+    <result column="invoice_date" jdbcType="TIMESTAMP" property="invoiceDate" />
+    <result column="vat_invoice_payer_name" jdbcType="VARCHAR" property="vatInvoicePayerName" />
+    <result column="var_invoice_goods_list" jdbcType="VARCHAR" property="varInvoiceGoodsList" />
+    <result column="vat_invoice_rate_payer_id" jdbcType="VARCHAR" property="vatInvoiceRatePayerId" />
+    <result column="vat_invoice_seller_name" jdbcType="VARCHAR" property="vatInvoiceSellerName" />
+    <result column="vat_invoice_seller_bank_account" jdbcType="VARCHAR" property="vatInvoiceSellerBankAccount" />
+    <result column="authenticity" jdbcType="INTEGER" property="authenticity" />
+    <result column="exist_invoice_seal" jdbcType="INTEGER" property="existInvoiceSeal" />
+    <result column="exist_stample" jdbcType="INTEGER" property="existStample" />
+    <result column="vat_invoice_haoma" jdbcType="VARCHAR" property="vatInvoiceHaoma" />
+    <result column="vat_invoice_correct_code" jdbcType="VARCHAR" property="vatInvoiceCorrectCode" />
+    <result column="vat_invoice_seller_id" jdbcType="VARCHAR" property="vatInvoiceSellerId" />
+    <result column="vat_invoice_zhuan_yong_flag" jdbcType="VARCHAR" property="vatInvoiceZhuanYongFlag" />
+    <result column="groups" jdbcType="VARCHAR" property="groups" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    invoice_id, reimbursement_id, reimbursement_category, reimbursement_content, invoice_name, 
+    invoice_code, invoice_price, invoice_date, vat_invoice_payer_name, var_invoice_goods_list, 
+    vat_invoice_rate_payer_id, vat_invoice_seller_name, vat_invoice_seller_bank_account, 
+    authenticity, exist_invoice_seal, exist_stample, vat_invoice_haoma, vat_invoice_correct_code, 
+    vat_invoice_seller_id, vat_invoice_zhuan_yong_flag, groups, remarks, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vat_invoice
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from vat_invoice
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zan.pojo.VatInvoice">
+    insert into vat_invoice (invoice_id, reimbursement_id, reimbursement_category, 
+      reimbursement_content, invoice_name, invoice_code, 
+      invoice_price, invoice_date, vat_invoice_payer_name, 
+      var_invoice_goods_list, vat_invoice_rate_payer_id, 
+      vat_invoice_seller_name, vat_invoice_seller_bank_account, 
+      authenticity, exist_invoice_seal, exist_stample, 
+      vat_invoice_haoma, vat_invoice_correct_code, 
+      vat_invoice_seller_id, vat_invoice_zhuan_yong_flag, 
+      groups, remarks, create_time
+      )
+    values (#{invoiceId,jdbcType=INTEGER}, #{reimbursementId,jdbcType=INTEGER}, #{reimbursementCategory,jdbcType=VARCHAR}, 
+      #{reimbursementContent,jdbcType=VARCHAR}, #{invoiceName,jdbcType=VARCHAR}, #{invoiceCode,jdbcType=VARCHAR}, 
+      #{invoicePrice,jdbcType=DECIMAL}, #{invoiceDate,jdbcType=TIMESTAMP}, #{vatInvoicePayerName,jdbcType=VARCHAR}, 
+      #{varInvoiceGoodsList,jdbcType=VARCHAR}, #{vatInvoiceRatePayerId,jdbcType=VARCHAR}, 
+      #{vatInvoiceSellerName,jdbcType=VARCHAR}, #{vatInvoiceSellerBankAccount,jdbcType=VARCHAR}, 
+      #{authenticity,jdbcType=INTEGER}, #{existInvoiceSeal,jdbcType=INTEGER}, #{existStample,jdbcType=INTEGER}, 
+      #{vatInvoiceHaoma,jdbcType=VARCHAR}, #{vatInvoiceCorrectCode,jdbcType=VARCHAR}, 
+      #{vatInvoiceSellerId,jdbcType=VARCHAR}, #{vatInvoiceZhuanYongFlag,jdbcType=VARCHAR}, 
+      #{groups,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zan.pojo.VatInvoice">
+    insert into vat_invoice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="invoiceId != null">
+        invoice_id,
+      </if>
+      <if test="reimbursementId != null">
+        reimbursement_id,
+      </if>
+      <if test="reimbursementCategory != null">
+        reimbursement_category,
+      </if>
+      <if test="reimbursementContent != null">
+        reimbursement_content,
+      </if>
+      <if test="invoiceName != null">
+        invoice_name,
+      </if>
+      <if test="invoiceCode != null">
+        invoice_code,
+      </if>
+      <if test="invoicePrice != null">
+        invoice_price,
+      </if>
+      <if test="invoiceDate != null">
+        invoice_date,
+      </if>
+      <if test="vatInvoicePayerName != null">
+        vat_invoice_payer_name,
+      </if>
+      <if test="varInvoiceGoodsList != null">
+        var_invoice_goods_list,
+      </if>
+      <if test="vatInvoiceRatePayerId != null">
+        vat_invoice_rate_payer_id,
+      </if>
+      <if test="vatInvoiceSellerName != null">
+        vat_invoice_seller_name,
+      </if>
+      <if test="vatInvoiceSellerBankAccount != null">
+        vat_invoice_seller_bank_account,
+      </if>
+      <if test="authenticity != null">
+        authenticity,
+      </if>
+      <if test="existInvoiceSeal != null">
+        exist_invoice_seal,
+      </if>
+      <if test="existStample != null">
+        exist_stample,
+      </if>
+      <if test="vatInvoiceHaoma != null">
+        vat_invoice_haoma,
+      </if>
+      <if test="vatInvoiceCorrectCode != null">
+        vat_invoice_correct_code,
+      </if>
+      <if test="vatInvoiceSellerId != null">
+        vat_invoice_seller_id,
+      </if>
+      <if test="vatInvoiceZhuanYongFlag != null">
+        vat_invoice_zhuan_yong_flag,
+      </if>
+      <if test="groups != null">
+        groups,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="invoiceId != null">
+        #{invoiceId,jdbcType=INTEGER},
+      </if>
+      <if test="reimbursementId != null">
+        #{reimbursementId,jdbcType=INTEGER},
+      </if>
+      <if test="reimbursementCategory != null">
+        #{reimbursementCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="reimbursementContent != null">
+        #{reimbursementContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceName != null">
+        #{invoiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCode != null">
+        #{invoiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicePrice != null">
+        #{invoicePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceDate != null">
+        #{invoiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vatInvoicePayerName != null">
+        #{vatInvoicePayerName,jdbcType=VARCHAR},
+      </if>
+      <if test="varInvoiceGoodsList != null">
+        #{varInvoiceGoodsList,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceRatePayerId != null">
+        #{vatInvoiceRatePayerId,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceSellerName != null">
+        #{vatInvoiceSellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceSellerBankAccount != null">
+        #{vatInvoiceSellerBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticity != null">
+        #{authenticity,jdbcType=INTEGER},
+      </if>
+      <if test="existInvoiceSeal != null">
+        #{existInvoiceSeal,jdbcType=INTEGER},
+      </if>
+      <if test="existStample != null">
+        #{existStample,jdbcType=INTEGER},
+      </if>
+      <if test="vatInvoiceHaoma != null">
+        #{vatInvoiceHaoma,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceCorrectCode != null">
+        #{vatInvoiceCorrectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceSellerId != null">
+        #{vatInvoiceSellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceZhuanYongFlag != null">
+        #{vatInvoiceZhuanYongFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="groups != null">
+        #{groups,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zan.pojo.VatInvoice">
+    update vat_invoice
+    <set>
+      <if test="reimbursementId != null">
+        reimbursement_id = #{reimbursementId,jdbcType=INTEGER},
+      </if>
+      <if test="reimbursementCategory != null">
+        reimbursement_category = #{reimbursementCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="reimbursementContent != null">
+        reimbursement_content = #{reimbursementContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceName != null">
+        invoice_name = #{invoiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCode != null">
+        invoice_code = #{invoiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicePrice != null">
+        invoice_price = #{invoicePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceDate != null">
+        invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vatInvoicePayerName != null">
+        vat_invoice_payer_name = #{vatInvoicePayerName,jdbcType=VARCHAR},
+      </if>
+      <if test="varInvoiceGoodsList != null">
+        var_invoice_goods_list = #{varInvoiceGoodsList,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceRatePayerId != null">
+        vat_invoice_rate_payer_id = #{vatInvoiceRatePayerId,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceSellerName != null">
+        vat_invoice_seller_name = #{vatInvoiceSellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceSellerBankAccount != null">
+        vat_invoice_seller_bank_account = #{vatInvoiceSellerBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticity != null">
+        authenticity = #{authenticity,jdbcType=INTEGER},
+      </if>
+      <if test="existInvoiceSeal != null">
+        exist_invoice_seal = #{existInvoiceSeal,jdbcType=INTEGER},
+      </if>
+      <if test="existStample != null">
+        exist_stample = #{existStample,jdbcType=INTEGER},
+      </if>
+      <if test="vatInvoiceHaoma != null">
+        vat_invoice_haoma = #{vatInvoiceHaoma,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceCorrectCode != null">
+        vat_invoice_correct_code = #{vatInvoiceCorrectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceSellerId != null">
+        vat_invoice_seller_id = #{vatInvoiceSellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="vatInvoiceZhuanYongFlag != null">
+        vat_invoice_zhuan_yong_flag = #{vatInvoiceZhuanYongFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="groups != null">
+        groups = #{groups,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zan.pojo.VatInvoice">
+    update vat_invoice
+    set reimbursement_id = #{reimbursementId,jdbcType=INTEGER},
+      reimbursement_category = #{reimbursementCategory,jdbcType=VARCHAR},
+      reimbursement_content = #{reimbursementContent,jdbcType=VARCHAR},
+      invoice_name = #{invoiceName,jdbcType=VARCHAR},
+      invoice_code = #{invoiceCode,jdbcType=VARCHAR},
+      invoice_price = #{invoicePrice,jdbcType=DECIMAL},
+      invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
+      vat_invoice_payer_name = #{vatInvoicePayerName,jdbcType=VARCHAR},
+      var_invoice_goods_list = #{varInvoiceGoodsList,jdbcType=VARCHAR},
+      vat_invoice_rate_payer_id = #{vatInvoiceRatePayerId,jdbcType=VARCHAR},
+      vat_invoice_seller_name = #{vatInvoiceSellerName,jdbcType=VARCHAR},
+      vat_invoice_seller_bank_account = #{vatInvoiceSellerBankAccount,jdbcType=VARCHAR},
+      authenticity = #{authenticity,jdbcType=INTEGER},
+      exist_invoice_seal = #{existInvoiceSeal,jdbcType=INTEGER},
+      exist_stample = #{existStample,jdbcType=INTEGER},
+      vat_invoice_haoma = #{vatInvoiceHaoma,jdbcType=VARCHAR},
+      vat_invoice_correct_code = #{vatInvoiceCorrectCode,jdbcType=VARCHAR},
+      vat_invoice_seller_id = #{vatInvoiceSellerId,jdbcType=VARCHAR},
+      vat_invoice_zhuan_yong_flag = #{vatInvoiceZhuanYongFlag,jdbcType=VARCHAR},
+      groups = #{groups,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </update>
+</mapper>

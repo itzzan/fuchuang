@@ -1,0 +1,18 @@
+#配置数据库
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/financial_reimbursement?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+
+
+#mybatis中 将下划线转换为驼峰
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    #日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+
+

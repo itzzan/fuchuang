@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zan.mapper.DailyReimbursementMapper">
+  <resultMap id="BaseResultMap" type="com.zan.pojo.DailyReimbursement">
+    <id column="reimbursement_id" jdbcType="INTEGER" property="reimbursementId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="fund_no" jdbcType="VARCHAR" property="fundNo" />
+    <result column="reimbursement_no" jdbcType="VARCHAR" property="reimbursementNo" />
+    <result column="reimbursement_initiator" jdbcType="VARCHAR" property="reimbursementInitiator" />
+    <result column="bill_quantity" jdbcType="INTEGER" property="billQuantity" />
+    <result column="appendix" jdbcType="INTEGER" property="appendix" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="reimbursement_amount" jdbcType="DECIMAL" property="reimbursementAmount" />
+    <result column="checker" jdbcType="VARCHAR" property="checker" />
+    <result column="checker_number" jdbcType="VARCHAR" property="checkerNumber" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    reimbursement_id, user_id, project_id, fund_no, reimbursement_no, reimbursement_initiator, 
+    bill_quantity, appendix, money, reimbursement_amount, checker, checker_number, status, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from daily_reimbursement
+    where reimbursement_id = #{reimbursementId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from daily_reimbursement
+    where reimbursement_id = #{reimbursementId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zan.pojo.DailyReimbursement">
+    insert into daily_reimbursement (reimbursement_id, user_id, project_id, 
+      fund_no, reimbursement_no, reimbursement_initiator, 
+      bill_quantity, appendix, money, 
+      reimbursement_amount, checker, checker_number, 
+      status, create_time)
+    values (#{reimbursementId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, 
+      #{fundNo,jdbcType=VARCHAR}, #{reimbursementNo,jdbcType=VARCHAR}, #{reimbursementInitiator,jdbcType=VARCHAR}, 
+      #{billQuantity,jdbcType=INTEGER}, #{appendix,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
+      #{reimbursementAmount,jdbcType=DECIMAL}, #{checker,jdbcType=VARCHAR}, #{checkerNumber,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zan.pojo.DailyReimbursement">
+    insert into daily_reimbursement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reimbursementId != null">
+        reimbursement_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="fundNo != null">
+        fund_no,
+      </if>
+      <if test="reimbursementNo != null">
+        reimbursement_no,
+      </if>
+      <if test="reimbursementInitiator != null">
+        reimbursement_initiator,
+      </if>
+      <if test="billQuantity != null">
+        bill_quantity,
+      </if>
+      <if test="appendix != null">
+        appendix,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="reimbursementAmount != null">
+        reimbursement_amount,
+      </if>
+      <if test="checker != null">
+        checker,
+      </if>
+      <if test="checkerNumber != null">
+        checker_number,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reimbursementId != null">
+        #{reimbursementId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="fundNo != null">
+        #{fundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reimbursementNo != null">
+        #{reimbursementNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reimbursementInitiator != null">
+        #{reimbursementInitiator,jdbcType=VARCHAR},
+      </if>
+      <if test="billQuantity != null">
+        #{billQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="appendix != null">
+        #{appendix,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="reimbursementAmount != null">
+        #{reimbursementAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="checker != null">
+        #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="checkerNumber != null">
+        #{checkerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zan.pojo.DailyReimbursement">
+    update daily_reimbursement
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="fundNo != null">
+        fund_no = #{fundNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reimbursementNo != null">
+        reimbursement_no = #{reimbursementNo,jdbcType=VARCHAR},
+      </if>
+      <if test="reimbursementInitiator != null">
+        reimbursement_initiator = #{reimbursementInitiator,jdbcType=VARCHAR},
+      </if>
+      <if test="billQuantity != null">
+        bill_quantity = #{billQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="appendix != null">
+        appendix = #{appendix,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="reimbursementAmount != null">
+        reimbursement_amount = #{reimbursementAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="checker != null">
+        checker = #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="checkerNumber != null">
+        checker_number = #{checkerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where reimbursement_id = #{reimbursementId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zan.pojo.DailyReimbursement">
+    update daily_reimbursement
+    set user_id = #{userId,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=INTEGER},
+      fund_no = #{fundNo,jdbcType=VARCHAR},
+      reimbursement_no = #{reimbursementNo,jdbcType=VARCHAR},
+      reimbursement_initiator = #{reimbursementInitiator,jdbcType=VARCHAR},
+      bill_quantity = #{billQuantity,jdbcType=INTEGER},
+      appendix = #{appendix,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      reimbursement_amount = #{reimbursementAmount,jdbcType=DECIMAL},
+      checker = #{checker,jdbcType=VARCHAR},
+      checker_number = #{checkerNumber,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where reimbursement_id = #{reimbursementId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from daily_reimbursement
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+</mapper>

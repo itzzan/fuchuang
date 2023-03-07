@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zan.mapper.TaxiInvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.zan.pojo.TaxiInvoice">
+    <id column="invoice_id" jdbcType="INTEGER" property="invoiceId" />
+    <result column="reimbursement_id" jdbcType="INTEGER" property="reimbursementId" />
+    <result column="reimbursement_category" jdbcType="VARCHAR" property="reimbursementCategory" />
+    <result column="reimbursement_content" jdbcType="VARCHAR" property="reimbursementContent" />
+    <result column="invoice_name" jdbcType="VARCHAR" property="invoiceName" />
+    <result column="invoice_code" jdbcType="VARCHAR" property="invoiceCode" />
+    <result column="invoice_price" jdbcType="DECIMAL" property="invoicePrice" />
+    <result column="invoice_date" jdbcType="TIMESTAMP" property="invoiceDate" />
+    <result column="passenger_name" jdbcType="VARCHAR" property="passengerName" />
+    <result column="passenger_id" jdbcType="VARCHAR" property="passengerId" />
+    <result column="departure_date" jdbcType="TIMESTAMP" property="departureDate" />
+    <result column="departure_station" jdbcType="VARCHAR" property="departureStation" />
+    <result column="arrival_station" jdbcType="VARCHAR" property="arrivalStation" />
+    <result column="ticket_type" jdbcType="VARCHAR" property="ticketType" />
+    <result column="authenticity" jdbcType="INTEGER" property="authenticity" />
+    <result column="exist_invoice_seal" jdbcType="INTEGER" property="existInvoiceSeal" />
+    <result column="exist_stample" jdbcType="INTEGER" property="existStample" />
+    <result column="invoice_number" jdbcType="VARCHAR" property="invoiceNumber" />
+    <result column="wagon_number" jdbcType="VARCHAR" property="wagonNumber" />
+    <result column="mileage" jdbcType="VARCHAR" property="mileage" />
+    <result column="fuel_surcharge" jdbcType="DECIMAL" property="fuelSurcharge" />
+    <result column="groups" jdbcType="VARCHAR" property="groups" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    invoice_id, reimbursement_id, reimbursement_category, reimbursement_content, invoice_name, 
+    invoice_code, invoice_price, invoice_date, passenger_name, passenger_id, departure_date, 
+    departure_station, arrival_station, ticket_type, authenticity, exist_invoice_seal, 
+    exist_stample, invoice_number, wagon_number, mileage, fuel_surcharge, groups, remarks, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from taxi_invoice
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from taxi_invoice
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zan.pojo.TaxiInvoice">
+    insert into taxi_invoice (invoice_id, reimbursement_id, reimbursement_category, 
+      reimbursement_content, invoice_name, invoice_code, 
+      invoice_price, invoice_date, passenger_name, 
+      passenger_id, departure_date, departure_station, 
+      arrival_station, ticket_type, authenticity, 
+      exist_invoice_seal, exist_stample, invoice_number, 
+      wagon_number, mileage, fuel_surcharge, 
+      groups, remarks, create_time
+      )
+    values (#{invoiceId,jdbcType=INTEGER}, #{reimbursementId,jdbcType=INTEGER}, #{reimbursementCategory,jdbcType=VARCHAR}, 
+      #{reimbursementContent,jdbcType=VARCHAR}, #{invoiceName,jdbcType=VARCHAR}, #{invoiceCode,jdbcType=VARCHAR}, 
+      #{invoicePrice,jdbcType=DECIMAL}, #{invoiceDate,jdbcType=TIMESTAMP}, #{passengerName,jdbcType=VARCHAR}, 
+      #{passengerId,jdbcType=VARCHAR}, #{departureDate,jdbcType=TIMESTAMP}, #{departureStation,jdbcType=VARCHAR}, 
+      #{arrivalStation,jdbcType=VARCHAR}, #{ticketType,jdbcType=VARCHAR}, #{authenticity,jdbcType=INTEGER}, 
+      #{existInvoiceSeal,jdbcType=INTEGER}, #{existStample,jdbcType=INTEGER}, #{invoiceNumber,jdbcType=VARCHAR}, 
+      #{wagonNumber,jdbcType=VARCHAR}, #{mileage,jdbcType=VARCHAR}, #{fuelSurcharge,jdbcType=DECIMAL}, 
+      #{groups,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zan.pojo.TaxiInvoice">
+    insert into taxi_invoice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="invoiceId != null">
+        invoice_id,
+      </if>
+      <if test="reimbursementId != null">
+        reimbursement_id,
+      </if>
+      <if test="reimbursementCategory != null">
+        reimbursement_category,
+      </if>
+      <if test="reimbursementContent != null">
+        reimbursement_content,
+      </if>
+      <if test="invoiceName != null">
+        invoice_name,
+      </if>
+      <if test="invoiceCode != null">
+        invoice_code,
+      </if>
+      <if test="invoicePrice != null">
+        invoice_price,
+      </if>
+      <if test="invoiceDate != null">
+        invoice_date,
+      </if>
+      <if test="passengerName != null">
+        passenger_name,
+      </if>
+      <if test="passengerId != null">
+        passenger_id,
+      </if>
+      <if test="departureDate != null">
+        departure_date,
+      </if>
+      <if test="departureStation != null">
+        departure_station,
+      </if>
+      <if test="arrivalStation != null">
+        arrival_station,
+      </if>
+      <if test="ticketType != null">
+        ticket_type,
+      </if>
+      <if test="authenticity != null">
+        authenticity,
+      </if>
+      <if test="existInvoiceSeal != null">
+        exist_invoice_seal,
+      </if>
+      <if test="existStample != null">
+        exist_stample,
+      </if>
+      <if test="invoiceNumber != null">
+        invoice_number,
+      </if>
+      <if test="wagonNumber != null">
+        wagon_number,
+      </if>
+      <if test="mileage != null">
+        mileage,
+      </if>
+      <if test="fuelSurcharge != null">
+        fuel_surcharge,
+      </if>
+      <if test="groups != null">
+        groups,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="invoiceId != null">
+        #{invoiceId,jdbcType=INTEGER},
+      </if>
+      <if test="reimbursementId != null">
+        #{reimbursementId,jdbcType=INTEGER},
+      </if>
+      <if test="reimbursementCategory != null">
+        #{reimbursementCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="reimbursementContent != null">
+        #{reimbursementContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceName != null">
+        #{invoiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCode != null">
+        #{invoiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicePrice != null">
+        #{invoicePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceDate != null">
+        #{invoiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passengerName != null">
+        #{passengerName,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerId != null">
+        #{passengerId,jdbcType=VARCHAR},
+      </if>
+      <if test="departureDate != null">
+        #{departureDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departureStation != null">
+        #{departureStation,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalStation != null">
+        #{arrivalStation,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null">
+        #{ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticity != null">
+        #{authenticity,jdbcType=INTEGER},
+      </if>
+      <if test="existInvoiceSeal != null">
+        #{existInvoiceSeal,jdbcType=INTEGER},
+      </if>
+      <if test="existStample != null">
+        #{existStample,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceNumber != null">
+        #{invoiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wagonNumber != null">
+        #{wagonNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null">
+        #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelSurcharge != null">
+        #{fuelSurcharge,jdbcType=DECIMAL},
+      </if>
+      <if test="groups != null">
+        #{groups,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zan.pojo.TaxiInvoice">
+    update taxi_invoice
+    <set>
+      <if test="reimbursementId != null">
+        reimbursement_id = #{reimbursementId,jdbcType=INTEGER},
+      </if>
+      <if test="reimbursementCategory != null">
+        reimbursement_category = #{reimbursementCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="reimbursementContent != null">
+        reimbursement_content = #{reimbursementContent,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceName != null">
+        invoice_name = #{invoiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCode != null">
+        invoice_code = #{invoiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicePrice != null">
+        invoice_price = #{invoicePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceDate != null">
+        invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passengerName != null">
+        passenger_name = #{passengerName,jdbcType=VARCHAR},
+      </if>
+      <if test="passengerId != null">
+        passenger_id = #{passengerId,jdbcType=VARCHAR},
+      </if>
+      <if test="departureDate != null">
+        departure_date = #{departureDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departureStation != null">
+        departure_station = #{departureStation,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivalStation != null">
+        arrival_station = #{arrivalStation,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketType != null">
+        ticket_type = #{ticketType,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticity != null">
+        authenticity = #{authenticity,jdbcType=INTEGER},
+      </if>
+      <if test="existInvoiceSeal != null">
+        exist_invoice_seal = #{existInvoiceSeal,jdbcType=INTEGER},
+      </if>
+      <if test="existStample != null">
+        exist_stample = #{existStample,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceNumber != null">
+        invoice_number = #{invoiceNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wagonNumber != null">
+        wagon_number = #{wagonNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null">
+        mileage = #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="fuelSurcharge != null">
+        fuel_surcharge = #{fuelSurcharge,jdbcType=DECIMAL},
+      </if>
+      <if test="groups != null">
+        groups = #{groups,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zan.pojo.TaxiInvoice">
+    update taxi_invoice
+    set reimbursement_id = #{reimbursementId,jdbcType=INTEGER},
+      reimbursement_category = #{reimbursementCategory,jdbcType=VARCHAR},
+      reimbursement_content = #{reimbursementContent,jdbcType=VARCHAR},
+      invoice_name = #{invoiceName,jdbcType=VARCHAR},
+      invoice_code = #{invoiceCode,jdbcType=VARCHAR},
+      invoice_price = #{invoicePrice,jdbcType=DECIMAL},
+      invoice_date = #{invoiceDate,jdbcType=TIMESTAMP},
+      passenger_name = #{passengerName,jdbcType=VARCHAR},
+      passenger_id = #{passengerId,jdbcType=VARCHAR},
+      departure_date = #{departureDate,jdbcType=TIMESTAMP},
+      departure_station = #{departureStation,jdbcType=VARCHAR},
+      arrival_station = #{arrivalStation,jdbcType=VARCHAR},
+      ticket_type = #{ticketType,jdbcType=VARCHAR},
+      authenticity = #{authenticity,jdbcType=INTEGER},
+      exist_invoice_seal = #{existInvoiceSeal,jdbcType=INTEGER},
+      exist_stample = #{existStample,jdbcType=INTEGER},
+      invoice_number = #{invoiceNumber,jdbcType=VARCHAR},
+      wagon_number = #{wagonNumber,jdbcType=VARCHAR},
+      mileage = #{mileage,jdbcType=VARCHAR},
+      fuel_surcharge = #{fuelSurcharge,jdbcType=DECIMAL},
+      groups = #{groups,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where invoice_id = #{invoiceId,jdbcType=INTEGER}
+  </update>
+</mapper>
